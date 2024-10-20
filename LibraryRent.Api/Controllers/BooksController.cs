@@ -23,6 +23,14 @@ namespace LibraryRent.Api.Controllers
             return response.Succes? Ok(response): BadRequest(response);
         }
 
+        [HttpGet("GetBookById")]
+        public async Task<IActionResult> GetBookById(int idlibro)
+        {
+           
+            var response = await bookService.GetBookById(idlibro);
+            return response.Succes? Ok(response) : BadRequest(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddAsync(BookRequestDto requestDto)
         {
@@ -33,6 +41,7 @@ namespace LibraryRent.Api.Controllers
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateAsync(int id, BookRequestDto requestDto)
         {
+         
             var response= await bookService.UpdateAsync(id, requestDto);
             return response.Succes? Ok(response) : BadRequest(response);
         }
@@ -40,6 +49,7 @@ namespace LibraryRent.Api.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
+           
             var response= await bookService.DeleteAsync(id);
             return response.Succes? Ok(response) : BadRequest(response);
         }

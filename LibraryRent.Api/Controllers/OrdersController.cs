@@ -15,14 +15,14 @@ namespace LibraryRent.Api.Controllers
             this.orderService = orderService;
         }
 
-        [HttpPost]
+        [HttpPost("RegistrarPedido")]
         public async Task<IActionResult> AgregarPedido(OrderRequestDto orderRequest)
         {
             var response = await orderService.AgregarPedido(orderRequest);
             return response.Succes? Ok(response): BadRequest(response);
         }
 
-        [HttpGet]
+        [HttpGet("ReporteLibrosAlquiladorByDni")]
         public async Task<IActionResult> ListarLibrosAlquiladosXDni(string Dni)
         {
             var response = await orderService.ListarLibrosAlquilados(Dni);

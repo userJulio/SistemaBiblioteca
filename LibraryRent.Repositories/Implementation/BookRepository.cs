@@ -53,6 +53,7 @@ namespace LibraryRent.Repositories.Implementation
                           .AsNoTracking()
                           .Select(x => x.Id)
                           .FirstOrDefaultAsync();
+
             return idlibro;
 
         }

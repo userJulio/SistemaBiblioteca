@@ -51,10 +51,12 @@ namespace LibraryRent.Services.Implementation
                         nuevoCliente.Apellidos = request.Cliente.Apellidos;
                         nuevoCliente.Dni = request.Cliente.Dni;
                         nuevoCliente.Edad = request.Cliente.Edad;
+                       
+                        
                         await customerRepository.AddAsync(nuevoCliente);
                     }
 
-                    order.ClienteId = cliente is null ? nuevoCliente.Id : cliente.Id;
+                    order.ClienteId = cliente is null ? nuevoCliente.Id:cliente.Id;
 
                     var fechaPedidoyHora = $"{request.FechaPedido} {request.HoraPedido}";
 
@@ -77,8 +79,8 @@ namespace LibraryRent.Services.Implementation
                     foreach (var item in request.Libros)
                     {
                         var orderDetalle = new DetailOrder();
-
-                        orderDetalle.LibroId = await bookRepository.GetIdByISBN(item.ISBN);
+                        var idLibro = await bookRepository.GetIdByISBN(item.ISBN);
+                        orderDetalle.LibroId = Convert.ToInt32(idLibro);
                         orderDetalle.IdPedido = order.Id;
                         await orderRepository.AgregarDetallePedido(orderDetalle);
                     }

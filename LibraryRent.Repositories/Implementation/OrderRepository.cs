@@ -52,7 +52,7 @@ namespace LibraryRent.Repositories.Implementation
                                 .Select(x => x.Id).FirstOrDefaultAsync();
 
             var IdsPedidosxCliente = await context.Set<Order>()
-                                            .Where(x => x.ClienteId == idCliente)
+                                            .Where(x => x.ClienteId == Convert.ToInt32(idCliente))
                                             .AsNoTracking()
                                             .Select(x=>x.Id)
                                             .ToListAsync();
@@ -63,7 +63,7 @@ namespace LibraryRent.Repositories.Implementation
                                         .AsNoTracking()
                                         .Select(x=>new Book()
                                         {
-                                            Id=x.LibroId,
+                                            Id= x.LibroId,
                                             Nombre=x.Libro.Nombre,
                                             Autor=x.Libro.Autor,
                                             ISBN=x.Libro.ISBN,

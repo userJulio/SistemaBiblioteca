@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibraryRent.Entities
 {
-    public class Book
+    public class Book 
     {
         [Key]
         public int Id { get; set; } = default!;

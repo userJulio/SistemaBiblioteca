@@ -44,8 +44,9 @@ namespace LibraryRent.Services.Implementation
                     return response;
                 }
                 var customerdb = mapper.Map<Customer>(request);
+               
                 await  customerRepository.AddAsync(customerdb);
-                var idCustomer = customerdb.Id;
+                var idCustomer =customerdb.Id;
                 response.data = idCustomer;
                 response.Succes = true;
             }
@@ -77,6 +78,26 @@ namespace LibraryRent.Services.Implementation
                 logger.LogError($" {response.ErrorMessage}  {ex.Message}");
 
             }
+            return response;
+        }
+
+        public async Task<BaseResponseGeneric<CustomerResponseDto>> GetCustomerById(int id)
+        {
+            var response=new BaseResponseGeneric<CustomerResponseDto>();
+
+            try
+            {
+                var customerbd= await customerRepository.GetAsync(id);
+                var data=  mapper.Map<CustomerResponseDto>(customerbd);
+                response.data = data;
+                response.Succes = true;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Ocurrió un problema al obtener los datos";
+                logger.LogError($"{response.ErrorMessage}  {ex.Message}");
+            }
+
             return response;
         }
 

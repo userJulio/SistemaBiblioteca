@@ -13,6 +13,7 @@ namespace LibraryRent.Services.Interface
     {
         Task<BaseResponseGeneric<ICollection<CustomerResponseDto>>> SearchByNombre(string? nombre,PaginationDto pagination);
 
+        Task<BaseResponseGeneric<CustomerResponseDto>> GetCustomerById(int id);
         Task<BaseResponseGeneric<int>> AddAsync(CustomerRequestDto request);
 
        Task<BaseResponse> UpdateAsync(int id, CustomerRequestDto request);

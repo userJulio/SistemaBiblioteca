@@ -22,6 +22,14 @@ namespace LibraryRent.Api.Controllers
             return response.Succes? Ok(response) : BadRequest(response);
         }
 
+        [HttpGet("GetCustomerById")]
+        public async Task<IActionResult> GetCustomerById(int idcustomer)
+        {
+           
+            var response = await customerService.GetCustomerById(idcustomer);
+            return response.Succes? Ok(response) : BadRequest(Response);
+        }
+
         [HttpPost("GuardarCliente")]
         public async Task<IActionResult> Agregar(CustomerRequestDto requestDto)
         {
@@ -30,26 +38,23 @@ namespace LibraryRent.Api.Controllers
 
         }
 
-        [HttpPut("{id:int}")]
-        public async Task<IActionResult> Actualizar(int id,CustomerRequestDto requestDto)
+        [HttpPut("updateCustomer")]
+        public async Task<IActionResult> Actualizar(int idCliente,CustomerRequestDto requestDto)
         {
-            var response = await customerService.UpdateAsync(id, requestDto);
+            var response = await customerService.UpdateAsync(idCliente, requestDto);
             return response.Succes? Ok(response) : BadRequest(response);
 
         }
 
-        [HttpDelete("{id:int}")]
-        public async Task<IActionResult> Eliminar(int id)
+        [HttpDelete("deleteCustomer")]
+        public async Task<IActionResult> Eliminar(int idCliente)
         {
-            var response = await customerService.DeleteAsync(id);
+          
+            var response = await customerService.DeleteAsync(idCliente);
             return response.Succes ? Ok(response) : BadRequest(response);
         }
 
-        [HttpPost("RegistrarPedido")]
-        public async Task<IActionResult> RegistrarPedido(IEnumerable<CustomerRequestDto> ListaClientes)
-        {
-            return Ok();
-        }
+
 
     }
 }

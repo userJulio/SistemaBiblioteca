@@ -43,6 +43,7 @@ namespace LibraryRent.Services.Implementation
                     return response;
                 }
                 var bookdb = mapper.Map<Book>(request);
+           
                 await bookRepository.AddAsync(bookdb);
 
                 response.data = bookdb.Id;
@@ -75,6 +76,24 @@ namespace LibraryRent.Services.Implementation
             catch(Exception ex)
             {
                 response.ErrorMessage = "Ocurrió un error al eliminar ";
+                logger.LogError($"{response.ErrorMessage} {ex.Message}");
+            }
+            return response;
+        }
+
+        public async Task<BaseResponseGeneric<BookResponseDto>> GetBookById(int idlibro)
+        {
+            var response= new BaseResponseGeneric<BookResponseDto>();
+            try
+            {
+                var bookdb= await bookRepository.GetAsync(idlibro);
+                var data= mapper.Map<BookResponseDto>(bookdb);
+                response.data = data;
+                response.Succes = true;
+
+            }catch(Exception ex)
+            {
+                response.ErrorMessage = "Ocurrió un erro al obtener los datos";
                 logger.LogError($"{response.ErrorMessage} {ex.Message}");
             }
             return response;

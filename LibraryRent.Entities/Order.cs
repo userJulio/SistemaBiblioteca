@@ -15,7 +15,7 @@ namespace LibraryRent.Entities
 
         public DateTime FechaPedido { get; set; }
 
-        public int ClienteId { get; set; }
+        public int ClienteId { get; set; } 
 
         [ForeignKey("ClienteId")]
         public virtual Customer Cliente { get; set; } = default!;
