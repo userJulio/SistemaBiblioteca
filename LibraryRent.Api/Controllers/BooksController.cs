@@ -54,6 +54,12 @@ namespace LibraryRent.Api.Controllers
             return response.Succes? Ok(response) : BadRequest(response);
         }
 
+        [HttpGet("GeLibroeByIsbn")]
+        public async Task<IActionResult> GeLibroeByIsbn(string isbn)
+        {
+            var response= await bookService.GetLibroByIsbn(isbn);
+            return response.Succes ? Ok(response) : BadRequest(response);
+        }
 
     }
 }

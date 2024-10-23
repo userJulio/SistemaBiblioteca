@@ -155,5 +155,24 @@ namespace LibraryRent.Services.Implementation
             return response;
 
         }
+        
+        public async Task<BaseResponseGeneric<CustomerResponseDto>> GetClienteByDni(string Dni)
+        {
+            var response= new BaseResponseGeneric<CustomerResponseDto>();
+            try
+            {
+                var clientebd= await customerRepository.GetCustomerByDni(Dni);
+                var data= mapper.Map<CustomerResponseDto>(clientebd);
+                response.data = data;
+                response.Succes= true;
+                
+            }catch(Exception ex)
+            {
+                response.ErrorMessage = "Ocurrió un error al obtener los datos";
+                logger.LogError($"{response.ErrorMessage} {ex.Message}");
+            }
+
+            return response;
+        }
     }
 }

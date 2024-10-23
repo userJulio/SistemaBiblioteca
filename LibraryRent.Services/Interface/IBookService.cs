@@ -19,5 +19,7 @@ namespace LibraryRent.Services.Interface
         Task<BaseResponse> UpdateAsync(int id, BookRequestDto request);
 
         Task<BaseResponse> DeleteAsync(int id);
+        Task<BaseResponseGeneric<BookResponseDto>> GetLibroByIsbn(string isbn);
+
     }
 }

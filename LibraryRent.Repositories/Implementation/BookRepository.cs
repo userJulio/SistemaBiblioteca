@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,6 +57,15 @@ namespace LibraryRent.Repositories.Implementation
 
             return idlibro;
 
+        }
+
+        public async Task<Book?> GetLibroByIsbn(string isbn)
+        {
+            var libro = await context.Set<Book>().Where(x => x.ISBN == isbn)
+                        .AsNoTracking()
+                        .FirstOrDefaultAsync();
+
+            return libro;
         }
 
     }

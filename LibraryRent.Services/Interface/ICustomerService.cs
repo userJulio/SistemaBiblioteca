@@ -20,6 +20,7 @@ namespace LibraryRent.Services.Interface
 
         Task<BaseResponse> DeleteAsync(int id);
 
+        Task<BaseResponseGeneric<CustomerResponseDto>> GetClienteByDni(string Dni);
 
     }
 }

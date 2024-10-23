@@ -154,5 +154,22 @@ namespace LibraryRent.Services.Implementation
             }
             return response;
         }
+
+        public async Task<BaseResponseGeneric<BookResponseDto>> GetLibroByIsbn(string isbn)
+        {
+            var response= new BaseResponseGeneric<BookResponseDto>();
+            try
+            {
+                var bookdb= await bookRepository.GetLibroByIsbn(isbn);
+                var data= mapper.Map<BookResponseDto>(bookdb);
+                response.data = data;
+                response.Succes = true;
+            }catch(Exception ex)
+            {
+                response.ErrorMessage = "Ocurrió un error al obtener los datos";
+                logger.LogError($"{response.ErrorMessage} {ex.Message}");
+            }
+            return response;
+        }
     }
 }
