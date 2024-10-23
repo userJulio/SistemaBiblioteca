@@ -155,13 +155,13 @@ namespace LibraryRent.Services.Implementation
             return response;
         }
 
-        public async Task<BaseResponseGeneric<BookResponseDto>> GetLibroByIsbn(string isbn)
+        public async Task<BaseResponseGeneric<ICollection<BookResponseDto>>> GetLibroByIsbn(string? isbn)
         {
-            var response= new BaseResponseGeneric<BookResponseDto>();
+            var response= new BaseResponseGeneric<ICollection<BookResponseDto>>();
             try
             {
                 var bookdb= await bookRepository.GetLibroByIsbn(isbn);
-                var data= mapper.Map<BookResponseDto>(bookdb);
+                var data= mapper.Map<ICollection<BookResponseDto>>(bookdb);
                 response.data = data;
                 response.Succes = true;
             }catch(Exception ex)

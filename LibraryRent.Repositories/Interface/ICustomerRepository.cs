@@ -15,6 +15,6 @@ namespace LibraryRent.Repositories.Interface
 
         Task<Customer?> GetCustomerByDni(string Dni);
 
-      
+        Task<ICollection<Customer>> GetListCustomerByDni(string? Dni);
     }
 }

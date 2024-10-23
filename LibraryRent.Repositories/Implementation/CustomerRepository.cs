@@ -49,6 +49,16 @@ namespace LibraryRent.Repositories.Implementation
 
         }
 
+        public async Task<ICollection<Customer>> GetListCustomerByDni(string? Dni)
+        {
+            var dnisearch = (Dni is null) ? "" : Dni;
+            var lista = await context.Set<Customer>()
+                        .Where(x => x.Dni.ToLower().Trim().Contains(dnisearch.ToLower().Trim()))
+                        .AsNoTracking()
+                        .ToListAsync();
+            return lista;
+        }
+
       
 
     }

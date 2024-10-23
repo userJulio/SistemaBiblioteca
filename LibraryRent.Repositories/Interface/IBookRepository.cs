@@ -14,6 +14,6 @@ namespace LibraryRent.Repositories.Interface
         Task<bool> ValidarExisteISBN(string isbn);
 
         Task<int> GetIdByISBN(string isbn);
-        Task<Book?> GetLibroByIsbn(string isbn);
+        Task<ICollection<Book>> GetLibroByIsbn(string? isbn);
     }
 }

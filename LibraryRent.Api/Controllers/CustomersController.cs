@@ -55,9 +55,9 @@ namespace LibraryRent.Api.Controllers
         }
 
         [HttpGet("GetClienteByDni")]
-        public async Task<IActionResult> GetClienteByDni(string Dni)
+        public async Task<IActionResult> GetClienteByDni(string? Dni)
         {
-            var response = await customerService.GetClienteByDni(Dni);
+            var response = await customerService.GetClientesByDni(Dni);
             return response.Succes ? Ok(response) :BadRequest(response);
         }
 

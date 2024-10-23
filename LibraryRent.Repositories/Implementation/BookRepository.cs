@@ -59,13 +59,14 @@ namespace LibraryRent.Repositories.Implementation
 
         }
 
-        public async Task<Book?> GetLibroByIsbn(string isbn)
+        public async Task<ICollection<Book>> GetLibroByIsbn(string? isbn)
         {
-            var libro = await context.Set<Book>().Where(x => x.ISBN == isbn)
+            var isbnsearch = isbn is null ? "" : isbn;
+            var libros = await context.Set<Book>().Where(x => x.ISBN.ToLower().Trim().Contains(isbnsearch.ToLower().Trim()))
                         .AsNoTracking()
-                        .FirstOrDefaultAsync();
+                        .ToListAsync();
 
-            return libro;
+            return libros;
         }
 
     }

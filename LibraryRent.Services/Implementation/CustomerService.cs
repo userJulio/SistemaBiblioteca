@@ -156,13 +156,13 @@ namespace LibraryRent.Services.Implementation
 
         }
         
-        public async Task<BaseResponseGeneric<CustomerResponseDto>> GetClienteByDni(string Dni)
+        public async Task<BaseResponseGeneric<ICollection<CustomerResponseDto>>> GetClientesByDni(string? Dni)
         {
-            var response= new BaseResponseGeneric<CustomerResponseDto>();
+            var response= new BaseResponseGeneric<ICollection<CustomerResponseDto>>();
             try
             {
-                var clientebd= await customerRepository.GetCustomerByDni(Dni);
-                var data= mapper.Map<CustomerResponseDto>(clientebd);
+                var clientebd= await customerRepository.GetListCustomerByDni(Dni);
+                var data = mapper.Map<ICollection<CustomerResponseDto>>(clientebd);
                 response.data = data;
                 response.Succes= true;
                 
