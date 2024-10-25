@@ -45,14 +45,15 @@ namespace LibraryRent.Repositories.Implementation
             return _transaction;
         }
 
-        public async Task<ICollection<Book>> ListarLibrosAlquilosxDni(string Dni)
+        public async Task<ICollection<Book>> ListarLibrosAlquilosxDni(string? Dni)
         {
+            var Dnisearch = (Dni is null) ? "" : Dni;
             var idCliente = await context.Set<Customer>()
-                                .Where(x => x.Dni.Trim() == Dni.Trim())
+                                .Where(x => x.Dni.ToLower().Trim()==Dnisearch.ToLower().Trim())
                                 .Select(x => x.Id).FirstOrDefaultAsync();
 
             var IdsPedidosxCliente = await context.Set<Order>()
-                                            .Where(x => x.ClienteId == Convert.ToInt32(idCliente))
+                                            .Where(x => x.ClienteId == idCliente)
                                             .AsNoTracking()
                                             .Select(x=>x.Id)
                                             .ToListAsync();

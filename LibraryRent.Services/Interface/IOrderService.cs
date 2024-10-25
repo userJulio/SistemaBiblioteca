@@ -14,7 +14,7 @@ namespace LibraryRent.Services.Interface
 
         Task<BaseResponseGeneric<int>> AgregarPedido(OrderRequestDto request);
 
-        Task<BaseResponseGeneric<ICollection<BookResponseDto>>> ListarLibrosAlquilados(string Dni);
+        Task<BaseResponseGeneric<ICollection<BookResponseDto>>> ListarLibrosAlquilados(string? Dni);
 
     }
 }

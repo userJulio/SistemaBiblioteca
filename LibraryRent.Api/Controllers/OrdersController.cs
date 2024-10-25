@@ -23,7 +23,7 @@ namespace LibraryRent.Api.Controllers
         }
 
         [HttpGet("ReporteLibrosAlquiladorByDni")]
-        public async Task<IActionResult> ListarLibrosAlquiladosXDni(string Dni)
+        public async Task<IActionResult> ListarLibrosAlquiladosXDni(string? Dni)
         {
             var response = await orderService.ListarLibrosAlquilados(Dni);
             return response.Succes? Ok(response): BadRequest(response);

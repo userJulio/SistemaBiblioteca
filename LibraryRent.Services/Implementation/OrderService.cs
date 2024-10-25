@@ -100,7 +100,7 @@ namespace LibraryRent.Services.Implementation
                 return response;
         }
 
-        public async Task<BaseResponseGeneric<ICollection<BookResponseDto>>> ListarLibrosAlquilados(string Dni)
+        public async Task<BaseResponseGeneric<ICollection<BookResponseDto>>> ListarLibrosAlquilados(string? Dni)
         {
             var response = new BaseResponseGeneric<ICollection<BookResponseDto>>();
             try

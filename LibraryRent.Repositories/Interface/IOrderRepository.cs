@@ -20,6 +20,6 @@ namespace LibraryRent.Repositories.Interface
         Task<IDbContextTransaction> CreateTransactionAsync();
 
         //Lista de libros alquilados
-        Task<ICollection<Book>> ListarLibrosAlquilosxDni(string Dni);
+        Task<ICollection<Book>> ListarLibrosAlquilosxDni(string? Dni);
     }
 }
